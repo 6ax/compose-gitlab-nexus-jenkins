@@ -29,6 +29,8 @@ services:
             source: /srv/gitlab/data
             target: /var/opt/gitlab
     jenkins:
+      group_add:
+          - 113
       image: jenkins/jenkins:lts
       ports:
           - "8080:8080"
@@ -37,3 +39,9 @@ services:
           - type: bind
             source: /srv/jenkins
             target: /var/jenkins_home
+          - type: bind
+            source: /usr/bin/docker
+            target: /usr/bin/docker
+          - type: bind
+            source: /var/run/docker.sock
+            target: /var/run/docker.sock
